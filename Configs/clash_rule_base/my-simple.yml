@@ -1,6 +1,3 @@
-# ==========================================
-# تنظیمات حیاتی برای کارکرد صحیح در ویندوز
-# ==========================================
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -11,7 +8,7 @@ dns:
   enable: true
   respect-rules: true
   use-system-hosts: false
-  listen: 127.0.0.1:1053
+  listen: "127.0.0.1:1053"
   nameserver:
     - "https://8.8.8.8/dns-query#✅Select"
   proxy-server-nameserver:
@@ -23,7 +20,7 @@ dns:
     "rule-set:ir": "8.8.8.8#DIRECT"
     "rule-set:ircidr": "8.8.8.8#DIRECT"
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: "198.18.0.1/16"
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.lan"
@@ -52,42 +49,45 @@ sniffer:
     TLS:
       ports: [443, 8443, 2053, 2083, 2087, 2096]
 
-# ==========================================
-# تعریف Rule-Providerها
-# ==========================================
 rule-providers:
   ircidr:
     type: http
     behavior: ipcidr
     format: text
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    path: ./ruleset/ircidr.txt
+    path: "./ruleset/ircidr.txt"
     interval: 86400
   ir:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    path: ./ruleset/ir.txt
+    path: "./ruleset/ir.txt"
     interval: 86400
   ads:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
-    path: ./ruleset/ads.txt
+    path: "./ruleset/ads.txt"
     interval: 86400
   malware:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
-    path: ./ruleset/malware.txt
+    path: "./ruleset/malware.txt"
     interval: 86400
   malware-ip:
     type: http
     behavior: ipcidr
     format: text
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
-    path: ./ruleset/malware-ip.txt
+    path: "./ruleset/malware-ip.txt"
     interval: 86400
+
+# ==========================================
+# در اینجا لیست proxies و proxy-groups و rules 
+# که توسط مبدل شما تولید می‌شود قرار می‌گیرد
+# (همان خروجی فعلی ورکر شما)
+# ==========================================

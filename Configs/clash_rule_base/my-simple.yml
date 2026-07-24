@@ -1,4 +1,60 @@
-# این فایل تعریف‌کننده Rule-Providerها با فرمت صحیح متنی است
+# ==========================================
+# تنظیمات حیاتی برای کارکرد صحیح در ویندوز
+# ==========================================
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+ipv6: false
+
+dns:
+  enable: true
+  respect-rules: true
+  use-system-hosts: false
+  listen: 127.0.0.1:1053
+  nameserver:
+    - "https://8.8.8.8/dns-query#✅Select"
+  proxy-server-nameserver:
+    - "8.8.8.8#DIRECT"
+  direct-nameserver:
+    - "8.8.8.8#DIRECT"
+  direct-nameserver-follow-policy: true
+  nameserver-policy:
+    "rule-set:ir": "8.8.8.8#DIRECT"
+    "rule-set:ircidr": "8.8.8.8#DIRECT"
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - "+.ir"
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  mtu: 9000
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080, 8880, 2052, 2082, 2086, 2095]
+    TLS:
+      ports: [443, 8443, 2053, 2083, 2087, 2096]
+
+# ==========================================
+# تعریف Rule-Providerها
+# ==========================================
 rule-providers:
   ircidr:
     type: http

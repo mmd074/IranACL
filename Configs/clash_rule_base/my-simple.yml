@@ -1,5 +1,5 @@
 mixed-port: 7890
-ipv6: false
+ipv6: true
 allow-lan: false
 unified-delay: false
 log-level: warning
@@ -12,6 +12,7 @@ geo-auto-update: true
 geo-update-interval: 168
 
 external-controller: "127.0.0.1:9090"
+
 external-controller-cors:
   allow-origins:
     - "*"
@@ -30,18 +31,30 @@ dns:
   use-system-hosts: false
   listen: "127.0.0.1:1053"
   ipv6: false
+
+  hosts:
+    "rule-set:malware": "rcode://refused"
+    "rule-set:category-ads-all": "rcode://refused"
+
   nameserver:
-    - "https://8.8.8.8/dns-query#✅Select"
+    - "https://8.8.8.8/dns-query#✅ Selector"
+
   proxy-server-nameserver:
     - "8.8.8.8#DIRECT"
+
   direct-nameserver:
     - "8.8.8.8#DIRECT"
+
   direct-nameserver-follow-policy: true
+
   nameserver-policy:
     "rule-set:ir": "8.8.8.8#DIRECT"
+
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+
   fake-ip-filter-mode: blacklist
+
   fake-ip-filter:
     - "+.lan"
     - "+.local"
@@ -52,9 +65,11 @@ tun:
   auto-route: true
   strict-route: true
   auto-detect-interface: true
+
   dns-hijack:
     - "any:53"
     - "tcp://any:53"
+
   mtu: 9000
 
 sniffer:
@@ -62,6 +77,7 @@ sniffer:
   force-dns-mapping: true
   parse-pure-ip: true
   override-destination: true
+
   sniff:
     HTTP:
       ports:
@@ -72,6 +88,7 @@ sniffer:
         - 2082
         - 2086
         - 2095
+
     TLS:
       ports:
         - 443
@@ -80,46 +97,60 @@ sniffer:
         - 2083
         - 2087
         - 2096
-        
+
 ntp:
-    enable: true
-    server: time.cloudflare.com
-    port: 123
-    interval: 30
+  enable: true
+  server: time.cloudflare.com
+  port: 123
+  interval: 30
 
 rule-providers:
-  ircidr:
-    type: http
-    behavior: ipcidr
-    format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    path: ./ruleset/ircidr.txt
-    interval: 86400
-  ir:
-    type: http
-    behavior: domain
-    format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    path: ./ruleset/ir.txt
-    interval: 86400
-  category-ads-all:
-    type: http
-    behavior: domain
-    format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
-    path: ./ruleset/category-ads-all.txt
-    interval: 86400
   malware:
     type: http
-    behavior: domain
     format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+    behavior: domain
     path: ./ruleset/malware.txt
     interval: 86400
-  malware-ip:
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+
+  malware-cidr:
     type: http
-    behavior: ipcidr
     format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
-    path: ./ruleset/malware-ip.txt
+    behavior: ipcidr
+    path: ./ruleset/malware-cidr.txt
     interval: 86400
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
+
+  category-ads-all:
+    type: http
+    format: text
+    behavior: domain
+    path: ./ruleset/category-ads-all.txt
+    interval: 86400
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
+
+  ir:
+    type: http
+    format: text
+    behavior: domain
+    path: ./ruleset/ir.txt
+    interval: 86400
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
+
+  ir-cidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    path: ./ruleset/ir-cidr.txt
+    interval: 86400
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
+
+rules:
+  - GEOIP,lan,DIRECT,no-resolve
+  - NETWORK,udp,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,malware-cidr,REJECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ir-cidr,DIRECT
+  - MATCH,✅ Selector

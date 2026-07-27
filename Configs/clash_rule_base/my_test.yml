@@ -31,14 +31,11 @@ dns:
   listen: "127.0.0.1:1053"
   ipv6: false
   nameserver:
-    - "https://8.8.8.8/dns-query#✅Select"
+    - "https://8.8.8.8/dns-query"
   proxy-server-nameserver:
     - "8.8.8.8#DIRECT"
   direct-nameserver:
     - "8.8.8.8#DIRECT"
-  direct-nameserver-follow-policy: true
-  nameserver-policy:
-    "rule-set:ir": "8.8.8.8#DIRECT"
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -50,7 +47,7 @@ tun:
   enable: true
   stack: mixed
   auto-route: true
-  strict-route: true
+  strict-route: false
   auto-detect-interface: true
   dns-hijack:
     - "any:53"
@@ -80,12 +77,12 @@ sniffer:
         - 2083
         - 2087
         - 2096
-        
+
 ntp:
-    enable: true
-    server: time.cloudflare.com
-    port: 123
-    interval: 30
+  enable: true
+  server: time.cloudflare.com
+  port: 123
+  interval: 30
 
 rule-providers:
   ircidr:
@@ -95,6 +92,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
     path: ./ruleset/ircidr.txt
     interval: 86400
+
   ir:
     type: http
     behavior: domain
@@ -102,6 +100,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
     path: ./ruleset/ir.txt
     interval: 86400
+
   category-ads-all:
     type: http
     behavior: domain
@@ -109,6 +108,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
     path: ./ruleset/category-ads-all.txt
     interval: 86400
+
   malware:
     type: http
     behavior: domain
@@ -116,6 +116,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
     path: ./ruleset/malware.txt
     interval: 86400
+
   malware-ip:
     type: http
     behavior: ipcidr

@@ -30,9 +30,6 @@ dns:
   use-system-hosts: false
   listen: "127.0.0.1:1053"
   ipv6: false
-  hosts:
-    "rule-set:malware": "rcode://refused"
-    "rule-set:category-ads-all": "rcode://refused"
   nameserver:
     - "https://8.8.8.8/dns-query#✅Select"
   proxy-server-nameserver:

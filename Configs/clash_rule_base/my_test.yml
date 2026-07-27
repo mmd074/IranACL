@@ -37,7 +37,7 @@ dns:
     "rule-set:category-ads-all": "rcode://refused"
 
   nameserver:
-    - "https://8.8.8.8/dns-query#✅ Selector"
+    - "https://8.8.8.8/dns-query#✅ Select"
 
   proxy-server-nameserver:
     - "8.8.8.8#DIRECT"
@@ -153,4 +153,4 @@ rules:
   - RULE-SET,malware-cidr,REJECT
   - RULE-SET,ir,DIRECT
   - RULE-SET,ir-cidr,DIRECT
-  - MATCH,✅ Selector
+  - MATCH,✅ Select

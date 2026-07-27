@@ -1,5 +1,5 @@
 mixed-port: 7890
-ipv6: true
+ipv6: false
 allow-lan: false
 unified-delay: false
 log-level: warning

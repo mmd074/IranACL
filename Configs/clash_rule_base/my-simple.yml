@@ -5,8 +5,8 @@ unified-delay: false
 log-level: warning
 mode: rule
 disable-keep-alive: false
-keep-alive-idle: false
-keep-alive-interval: false
+keep-alive-idle: 10
+keep-alive-interval: 15
 tcp-concurrent: true
 geo-auto-update: true
 geo-update-interval: 168

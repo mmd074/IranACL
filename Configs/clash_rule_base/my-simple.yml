@@ -21,19 +21,19 @@ dns:
 # ==========================================
 # ==========================================
 rule-providers:
-  ircidr:
-    type: http
-    behavior: ipcidr
-    format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    path: ./ruleset/ircidr.txt
-    interval: 86400
-  ir:
+  malware:
     type: http
     behavior: domain
     format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    path: ./ruleset/ir.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+    path: ./ruleset/malware.txt
+    interval: 86400
+  malware-cidr:
+    type: http
+    behavior: ipcidr
+    format: text
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
+    path: ./ruleset/malware-cidr.txt
     interval: 86400
   category-ads-all:
     type: http
@@ -42,17 +42,17 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
     path: ./ruleset/category-ads-all.txt
     interval: 86400
-  malware:
+  ir:
     type: http
     behavior: domain
     format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
-    path: ./ruleset/malware.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
+    path: ./ruleset/ir.txt
     interval: 86400
-  malware-ip:
+  ircidr:
     type: http
     behavior: ipcidr
     format: text
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
-    path: ./ruleset/malware-ip.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
+    path: ./ruleset/ircidr.txt
     interval: 86400

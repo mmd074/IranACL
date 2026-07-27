@@ -81,7 +81,7 @@ sniffer:
         - 2087
         - 2096
         
-  ntp:
+ntp:
     enable: true
     server: time.cloudflare.com
     port: 123

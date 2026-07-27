@@ -98,7 +98,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
     path: ./ruleset/ir.txt
     interval: 86400
-  ads:
+  category-ads-all:
     type: http
     behavior: domain
     format: text

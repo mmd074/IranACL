@@ -34,7 +34,6 @@ dns:
     - "+.local"
   hosts:
     "rule-set:malware": "rcode://refused"
-    "rule-set:category-ads-all": "rcode://refused"
   nameserver:
     - "https://8.8.8.8/dns-query#✅Select"
   proxy-server-nameserver:
